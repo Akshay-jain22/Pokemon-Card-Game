@@ -1,0 +1,61 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1{
+    text-align: center;
+    margin: 5px auto;
+    font-family: cursive;
+    color: greenyellow;
+}
+
+body{
+    height: 100vh;
+    background-image: linear-gradient(#0056d6, #0091e3, #00bac8, #9dd9be, #f1f6e5);
+}
+
+.card-game{
+    width: 600px;
+    height: 600px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid lime;
+    perspective: 1000px;
+}
+
+.memory-card{
+    width: 25%;
+    height: 25%;
+    position: relative;
+    border: 2px solid aqua;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
+}
+
+.memory-card:active{
+    transform: scale(0.95);
+    transition: transform .2s;
+}
+
+.memory-card.flip{
+    transform: rotateY(180deg);
+}
+
+.front, .back{
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 5px;
+    background: rgb(69, 69, 247);
+    backface-visibility: hidden;
+}
+
+.back{
+    transform: rotateY(180deg);
+}
