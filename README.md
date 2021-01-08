@@ -18,3 +18,5 @@ The Pokemons are as -
   8. Snorlax
   
 Play Pokemon Card Game now and let the fun begins!!!
+
+### [Game Deployment](https://akshay-jain22.github.io/Pokemon-Card-Game/)
