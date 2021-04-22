@@ -3,20 +3,21 @@ const cards = document.querySelectorAll('.memory-card');
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
+let score = 0;
 
-function flipCard(){
-    if(lockBoard || this==firstCard) return;
+function flipCard() {
+    if (lockBoard || this == firstCard) return;
 
     this.classList.add('flip');
 
-    if(!hasFlippedCard){
+    if (!hasFlippedCard) {
         // First click
         hasFlippedCard = true;
         firstCard = this;
 
         return;
     }
-    
+
     hasFlippedCard = false;
     secondCard = this;
 
@@ -24,20 +25,21 @@ function flipCard(){
     checkForMatch();
 }
 
-function checkForMatch(){
+function checkForMatch() {
     let isMatch = firstCard.dataset.framework == secondCard.dataset.framework;
 
-    isMatch ? disableCards() : unFlipCards() ;
+    isMatch ? disableCards() : unFlipCards();
 }
 
-function disableCards(){
+function disableCards() {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
+    score += 1;
 
     resetBoard();
 }
 
-function unFlipCards(){
+function unFlipCards() {
     lockBoard = true;
     setTimeout(() => {
         firstCard.classList.remove('flip');
@@ -47,15 +49,25 @@ function unFlipCards(){
     }, 1500);
 }
 
-function resetBoard(){
-    hasFlippedCard, lockBoard = false, false;
-    firstCard, secondCard = null, null;
+function resetBoard() {
+    hasFlippedCard,
+    lockBoard = false,
+    false;
+    firstCard,
+    secondCard = null,
+    null;
+
+    setTimeout(() => {
+        if (score == 8) {
+            alert("Congratulations you matched all pokemons!");
+        }
+    }, 1500);
 }
 
 // Shuffling cards through Immedialtely Invoked Function
-(function shuffle(){
-    cards.forEach(card =>{
-        let randomPos  = Math.floor(Math.random() * 16);
+(function shuffle() {
+    cards.forEach(card => {
+        let randomPos = Math.floor(Math.random() * 16);
         card.style.order = randomPos;
     });
 })();
